@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#FF3D00',
+    color: '#00bcd4',
     marginBottom: 24,
   },
   input: {
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   button: {
     width: '100%',
     height: 50,
-    backgroundColor: '#FF3D00',
+    backgroundColor: '#00bcd4',
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontSize: 16,
-    color: '#FF3D00',
+    color: '#00bcd4',
   },
 });
 

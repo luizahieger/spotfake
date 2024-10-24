@@ -1,17 +1,21 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Header from '../../components/Header';
+import PlaylistSection from '../../components/PlaylistSection';
+import MusicControls from '../../components/MusicControls';
 
-const HomeScreen = ({ navigation }) => {
-  const handleLogout = () => {
-    navigation.navigate('Login');
-  };
+const HomeScreen = () => {
+  const playlists = [
+    { id: '1', name: 'Minha Playlist 1' },
+    { id: '2', name: 'Minha Playlist 2' },
+    { id: '3', name: 'Minha Playlist 3' },
+  ];
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bem-vindo ao Spotfake!</Text>
-      <TouchableOpacity style={styles.button} onPress={handleLogout}>
-        <Text style={styles.buttonText}>Sair</Text>
-      </TouchableOpacity>
+      <Header />
+      <PlaylistSection playlists={playlists} />
+      <MusicControls />
     </View>
   );
 };
@@ -19,29 +23,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#121212',
-    padding: 16,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#FF3D00',
-    marginBottom: 24,
-  },
-  button: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#FF3D00',
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
   },
 });
 

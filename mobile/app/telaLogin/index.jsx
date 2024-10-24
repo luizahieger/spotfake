@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
@@ -6,8 +6,7 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Aqui você pode adicionar lógica para verificar o login
-    navigation.navigate('Home'); // Redireciona para a tela de Home
+    navigation.navigate('Home');
   };
 
   return (
@@ -33,7 +32,7 @@ const LoginScreen = ({ navigation }) => {
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.registerText}>Não tem uma conta? Cadastre-se</Text>
+        <Text style={styles.registerText}>Cadastre-se</Text>
       </TouchableOpacity>
     </View>
   );
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#FF3D00', // Vermelho
+    color: '#00bcd4',
     marginBottom: 24,
   },
   input: {
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
   button: {
     width: '100%',
     height: 50,
-    backgroundColor: '#FF3D00', // Vermelho
+    backgroundColor: '#00bcd4',
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
@@ -78,7 +77,8 @@ const styles = StyleSheet.create({
   },
   registerText: {
     fontSize: 16,
-    color: '#FF3D00', // Vermelho
+    color: '#00bcd4',
+    marginLeft: '55%',
   },
 });
 
