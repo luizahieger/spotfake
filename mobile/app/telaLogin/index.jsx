@@ -7,7 +7,7 @@ const LoginScreen = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:8000/registro', {
+      const response = await fetch('http://localhost:8000/login', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -19,19 +19,28 @@ const LoginScreen = ({ navigation }) => {
         })
       });
 
+      // Verifica o status da resposta
       if (response.status === 404) {
         window.alert('ERRO: Usuário não cadastrado!');
+        return
       } else if (response.status === 406) {
         window.alert('ERRO: Preencha todos os campos!');
+        return
       } else if (response.status === 403) {
         window.alert('ERRO: Senha incorreta!');
+        return
       } else if (response.status === 200) {
         navigation.navigate('Home');
-      } else {
+      } else if (response.status === 500) {
         window.alert('ERRO: Ocorreu um erro inesperado');
+        return
+      } else {
+        window.alert('ERRO: Resposta desconhecida do servidor');
+        return
       }
     } catch (error) {
       window.alert('ERRO: Não foi possível conectar ao servidor');
+      return
     }
   };
 
