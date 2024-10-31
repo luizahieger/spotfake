@@ -2,17 +2,74 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 const RegisterScreen = ({ navigation }) => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [birthDate, setBirthDate] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleRegister = () => {
-    navigation.navigate('Login'); 
+  const handleRegister = async () => {
+    if (password !== confirmPassword) {
+      window.alert('ERRO: As senhas não coincidem');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:8000/registro', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nome: firstName,
+          sobrenome: lastName,
+          dataNascimento: birthDate,
+          email: email,
+          senha: password
+        })
+      });
+
+      if (response.status === 400) {
+        window.alert('ERRO: Usuário já cadastrado!');
+      } else if (response.status === 406) {
+        window.alert('ERRO: Preencha todos os campos!');
+      } else if (response.status === 201) {
+        navigation.navigate('Home');
+      } else {
+        window.alert('ERRO: Ocorreu um erro inesperado');
+      }
+    } catch (error) {
+      window.alert('ERRO: Não foi possível conectar ao servidor');
+    }
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Cadastrar</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Nome"
+        placeholderTextColor="#888"
+        value={firstName}
+        onChangeText={setFirstName}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Sobrenome"
+        placeholderTextColor="#888"
+        value={lastName}
+        onChangeText={setLastName}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Data de Nascimento (DD/MM/AAAA)"
+        placeholderTextColor="#888"
+        keyboardType="numeric"
+        value={birthDate}
+        onChangeText={setBirthDate}
+      />
       <TextInput
         style={styles.input}
         placeholder="Email"

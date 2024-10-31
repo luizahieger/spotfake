@@ -5,8 +5,34 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    navigation.navigate('Home');
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/registro', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          senha: password
+        })
+      });
+
+      if (response.status === 404) {
+        window.alert('ERRO: Usuário não cadastrado!');
+      } else if (response.status === 406) {
+        window.alert('ERRO: Preencha todos os campos!');
+      } else if (response.status === 403) {
+        window.alert('ERRO: Senha incorreta!');
+      } else if (response.status === 200) {
+        navigation.navigate('Home');
+      } else {
+        window.alert('ERRO: Ocorreu um erro inesperado');
+      }
+    } catch (error) {
+      window.alert('ERRO: Não foi possível conectar ao servidor');
+    }
   };
 
   return (
