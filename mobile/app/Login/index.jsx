@@ -1,7 +1,7 @@
 import React, { useState } from 'react'; 
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-const LoginScreen = ({ navigation }) => {
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,7 +19,6 @@ const LoginScreen = ({ navigation }) => {
         })
       });
 
-      // Verifica o status da resposta
       if (response.status === 404) {
         window.alert('ERRO: Usuário não cadastrado!');
         return
@@ -45,61 +44,75 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#888"
-        keyboardType="email-address"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        placeholderTextColor="#888"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.registerText}>Cadastre-se</Text>
-      </TouchableOpacity>
+    <View style={styles.background}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Login</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          placeholderTextColor="#888"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          placeholderTextColor="#888"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Acessar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.registerText}>Esqueceu sua senha?</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#121212',
-    padding: 16,
+    backgroundColor: '#fce4ec',
+  },
+  container: {
+    width: '90%',
+    maxWidth: 400,
+    padding: 24,
+    borderRadius: 8,
+    backgroundColor: '#ffffff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+    alignItems: 'center',
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
-    color: '#00bcd4',
-    marginBottom: 24,
+    color: '#d81b60',
+    marginBottom: 16,
   },
   input: {
     width: '100%',
     height: 50,
-    backgroundColor: '#333',
+    backgroundColor: '#f8bbd0',
     borderRadius: 8,
     paddingHorizontal: 16,
     marginBottom: 16,
-    color: '#fff',
+    color: '#000',
   },
   button: {
     width: '100%',
     height: 50,
-    backgroundColor: '#00bcd4',
+    backgroundColor: '#d81b60',
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
@@ -111,10 +124,9 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   registerText: {
-    fontSize: 16,
-    color: '#00bcd4',
-    marginLeft: '55%',
+    fontSize: 14,
+    color: '#d81b60',
   },
 });
 
-export default LoginScreen;
+export default Login;

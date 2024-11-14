@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 
-const SplashScreen = ({ navigation }) => {
+const Carregamento = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.replace('Login');
@@ -12,7 +12,7 @@ const SplashScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/images/logoSpotfake1.png')}
+        source={require('../../assets/images/logo.png')}
         style={styles.logo}
         resizeMode="contain"
       />
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#121212',
+    backgroundColor: '#fce4ec',
   },
   logo: {
     width: 200,
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SplashScreen;
+export default Carregamento;
