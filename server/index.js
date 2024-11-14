@@ -22,7 +22,7 @@ app.post('/registro', async function (req, res) {
         
         // Verifica se o usuário já existe
         if (await User.findOne({ where: { email: email } })) {
-            res.status(400).send('usuario ja cadastrado');
+            res.status(400).send('Usuario ja cadastrado');
             return;
         }
         
