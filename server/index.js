@@ -8,24 +8,24 @@ const app = Express();
 app.use(Express.json());
 app.use(cors());
 
-// criarTabelas() 
+//criarTabelas() 
 
 app.post('/registro', async function (req, res) {
     try {
         const { nome, sobrenome, email, senha, dataNascimento } = req.body;
-        
+
         // Verifica se todos os campos foram enviados
         if (!nome || !sobrenome || !email || !senha || !dataNascimento) {
             res.status(406).send('todos os campos devem ser preenchidos');
             return;
         }
-        
+
         // Verifica se o usuário já existe
         if (await User.findOne({ where: { email: email } })) {
             res.status(400).send('Usuario ja cadastrado');
             return;
         }
-        
+
         const senhaSegura = bcrypt.hashSync(senha, 10);
 
         await User.create({
@@ -35,7 +35,7 @@ app.post('/registro', async function (req, res) {
             senha: senhaSegura,
             dataNascimento: dataNascimento,
         });
-        
+
         res.status(201).send('ok usuario criado');
     } catch (erro) {
         console.error(erro);
@@ -46,13 +46,13 @@ app.post('/registro', async function (req, res) {
 app.post('/login', async function (req, res) {
     try {
         const { email, senha } = req.body;
-        
+
         // Verifica se todos os campos foram preenchidos
         if (!email || !senha) {
             res.status(406).send('todos os campos devem ser preenchidos');
             return;
         }
-        
+
         // Verifica se o usuário existe
         const usuario = await User.findOne({ where: { email: email } });
         if (!usuario) {
@@ -85,6 +85,82 @@ app.post('/login', async function (req, res) {
     } catch (erro) {
         console.error(erro);
         res.status(500).send('houve um problema');
+    }
+});
+
+app.get('/:email/', async function (req, res) {
+    try {
+        const { email } = req.params
+
+
+        const usuario = await User.findOne({ where: { email: email } })
+        if(!usuario){
+            res.status(404).send('usuario não encontrado')
+        }
+
+        res.status(200).send(usuario);
+    } catch (erro) {
+        console.error(erro);
+        res.status(500).send('Erro interno no servidor');
+    }
+});
+
+app.post('/:email/foto_perfil', async function (req, res) {
+    try {
+        const { url } = req.body;
+        const { email } = req.params
+
+        // Verifica se todos os campos foram enviados
+        if (!url) {
+            res.status(406).send('o campo deve ser preenchido');
+            return;
+        }
+
+        // Verifica se o usuário já existe
+        const usuario = await User.findOne({ where: { email: email } })
+        if(!usuario){
+            res.status(404).send('usuario não encontrado')
+        }
+
+
+        await usuario.update({
+            foto: url,
+        });
+
+        res.status(200).send('usuario atualizado');
+    } catch (erro) {
+        console.error(erro);
+        res.status(500).send('Erro interno no servidor');
+    }
+});
+
+app.put('/:email/nova_senha', async function (req, res) {
+    try {
+        const { senha } = req.body;
+        const { email } = req.params
+
+        // Verifica se todos os campos foram enviados
+        if (!senha) {
+            res.status(406).send('o campo deve ser preenchido');
+            return;
+        }
+
+        // Verifica se o usuário já existe
+        const usuario = await User.findOne({ where: { email: email } })
+        if(!usuario){
+            res.status(404).send('usuario não encontrado')
+        }
+
+        const senhaSegura = bcrypt.hashSync(senha, 10);
+
+        await usuario.update({
+            senha: senhaSegura,
+        });
+
+        res.status(200).send('usuario atualizado');
+    } catch (erro) {
+        console.error(erro);
+        res.status(500).send('Erro interno no servidor');
     }
 });
 

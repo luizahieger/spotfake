@@ -5,6 +5,7 @@ import Carregamento from './Carregamento';
 import Login from './Login';
 import Cadastro from './Cadastro';
 import Home from './Home';
+import Perfil from './Perfil';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ const App = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Cadastro} />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Perfil" component={Perfil} />
       </Stack.Navigator>
     </NavigationContainer>
   );

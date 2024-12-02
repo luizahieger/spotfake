@@ -36,6 +36,11 @@ const User = sequelize.define('user', {
         type: Sequelize.DataTypes.ENUM('ativo', 'inativo'),
         allowNull: false,
         defaultValue: 'inativo'
+    }, 
+    foto: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: true,
+        defaultValue: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm9hlx79XPy7AWwPxUoKYmE3ZQZ_cIRcDDxA&s'
     }
 })
 

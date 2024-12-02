@@ -36,7 +36,7 @@ const Cadastro = ({ navigation }) => {
       } else if (response.status === 406) {
         window.alert('ERRO: Preencha todos os campos!');
       } else if (response.status === 201) {
-        navigation.navigate('Home');
+        navigation.navigate('Login');
       } else {
         window.alert('ERRO: Ocorreu um erro inesperado');
       }
