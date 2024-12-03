@@ -38,25 +38,28 @@ const Home = ({ navigation }) => {
 
   // Dados das listas
   const playlists = [
-    { id: 1, title: "Top Hits", imageUrl: "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2024/03/27/cachorro-salsicha-(2)-ubgbe5b698hf.jpg" },
-    { id: 2, title: "Chill Beats", imageUrl: "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2024/03/27/cachorro-salsicha-(2)-ubgbe5b698hf.jpg" },
+    { id: 1, title: "Luan Favoritas", imageUrl: "https://i.pinimg.com/736x/26/66/5c/26665ce8ef3b98bd44615d6a6f85efd2.jpg" },
+    { id: 2, title: "+ Animação ;)", imageUrl: "https://i.pinimg.com/736x/4c/be/2e/4cbe2ee0e7885abba6f1d982ddde7a49.jpg" },
+    { id: 3, title: "Modão", imageUrl: "https://i.pinimg.com/236x/13/89/4f/13894f1d07e4d807c06c3563ed5a6035.jpg" },
   ];
 
   const artistas = [
-    { id: 3, title: "Taylor Swift", imageUrl: "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2024/03/27/cachorro-salsicha-(2)-ubgbe5b698hf.jpg" },
-    { id: 4, title: "Drake", imageUrl: "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2024/03/27/cachorro-salsicha-(2)-ubgbe5b698hf.jpg" },
+    { id: 4, title: "Luan Santana", imageUrl: "https://i.pinimg.com/736x/17/33/97/173397ab0829467c7ff9da3bdbf459ae.jpg" },
+    { id: 5, title: "Gusttavo Lima", imageUrl: "https://i.pinimg.com/736x/c4/71/f6/c471f686fccab957e2c6785f2d1c7ce3.jpg" },
+    { id: 6, title: "One Direction", imageUrl: "https://i.pinimg.com/736x/fd/74/c6/fd74c6b97a433407bcc8d03771c32cd5.jpg" },
   ];
 
   const albuns = [
-    { id: 5, title: "1989", imageUrl: "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2024/03/27/cachorro-salsicha-(2)-ubgbe5b698hf.jpg" },
-    { id: 6, title: "Certified Lover Boy", imageUrl: "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2024/03/27/cachorro-salsicha-(2)-ubgbe5b698hf.jpg" },
+    { id: 7, title: "O Embaixador", imageUrl: "https://i.pinimg.com/236x/44/9f/05/449f056e1d3c637d449d14e677cfd3c5.jpg" },
+    { id: 8, title: "Luan CITY 2.0.", imageUrl: "https://i.pinimg.com/736x/b5/47/98/b54798a5ab5efe0d34f4c01c85feae13.jpg" },
   ];
 
   const musicas = [
-    { id: 7, title: "Shake It Off", imageUrl: "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2024/03/27/cachorro-salsicha-(2)-ubgbe5b698hf.jpg" },
-    { id: 8, title: "God's Plan", imageUrl: "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2024/03/27/cachorro-salsicha-(2)-ubgbe5b698hf.jpg" },
-    { id: 9, title: "Bad Guy", imageUrl: "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2024/03/27/cachorro-salsicha-(2)-ubgbe5b698hf.jpg" },
-    { id: 10, title: "Blinding Lights", imageUrl: "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2024/03/27/cachorro-salsicha-(2)-ubgbe5b698hf.jpg" },
+    { id: 9, title: "Deus é muito bom", imageUrl: "https://i.pinimg.com/736x/b5/47/98/b54798a5ab5efe0d34f4c01c85feae13.jpg" },
+    { id: 10, title: "Princesinha Mandona", imageUrl: "https://i.pinimg.com/236x/01/66/be/0166be5839386af5838e8e7c41a20d8c.jpg" },
+    { id: 11, title: "Certeza", imageUrl: "https://i.pinimg.com/474x/94/16/41/941641dfebadcda71f42398b7cb3da60.jpg" },
+    { id: 12, title: "Carrinho na Areia", imageUrl: "https://i.pinimg.com/236x/44/9f/05/449f056e1d3c637d449d14e677cfd3c5.jpg" },
+    { id: 13, title: "Sinônimos", imageUrl: "https://i.pinimg.com/236x/cd/f9/8d/cdf98db78ced11788690ac7dce8fca21.jpg" },
   ];
 
   const renderSection = (title, data) => (
@@ -84,11 +87,11 @@ const Home = ({ navigation }) => {
         </Pressable>
       </View>
       <Text style={styles.title}>SpotFake</Text>
-      <ScrollView>
+      <ScrollView style={styles.scroll}>
+        {renderSection("Músicas", musicas)}
         {renderSection("Playlists", playlists)}
         {renderSection("Artistas", artistas)}
         {renderSection("Álbuns", albuns)}
-        {renderSection("Músicas", musicas)}
       </ScrollView>
     </View>
   );
@@ -132,19 +135,22 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   item: {
-    marginRight: 16,
+    marginRight: 30,
     alignItems: 'center',
   },
   itemImage: {
-    width: 100,
-    height: 100,
+    width: 130,
+    height: 130,
     borderRadius: 8,
     marginBottom: 8,
   },
   itemText: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#880e4f',
   },
+  scroll: {
+    height: 100,
+  }
 });
 
 export default Home;

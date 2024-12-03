@@ -256,7 +256,7 @@ export default function Perfil({ navigation }) {
 const styles = StyleSheet.create({
     profileScreenContainer: {
         flex: 1,
-        backgroundColor: '#fce4ec',
+        backgroundColor: '#000',
         padding: 20,
         justifyContent: 'center',
     },
